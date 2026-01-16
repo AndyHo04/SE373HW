@@ -1,0 +1,51 @@
+# Week 1-2 - Node.js Todo Server
+
+## Installation
+
+Install dependencies:
+```bash
+npm install
+```
+
+This will install:
+- `express` (^5.2.1) - Web framework
+- `mongoose` (^9.1.3) - MongoDB ODM
+- `dotenv` (^17.2.3) - Environment variable management
+- `nodemon` (^3.1.11) - Development server with auto-reload
+Or install individually:
+```bash
+npm install express
+npm install mongoose
+npm install dotenv
+npm install nodemon --save-dev
+```
+## Running the Server
+
+Start the server:
+```bash
+npm run dev
+```
+
+Or use Node directly:
+```bash
+node app.js
+```
+
+Or use nodemon for auto-reload:
+```bash
+nodemon app.js
+```
+
+The server will run on http://localhost:3000
+
+## Confirmation that your /todo endpoint returns data from Atlas
+
+![Todo Endpoint Proof 1](screenshots/TodoProof%231.png)
+![Todo Endpoint Proof 2](screenshots/TodoProof%232.png)
+![Todo Endpoint Proof 3](screenshots/TodoProof%233.png)
+![Todo Endpoint Proof 4](screenshots/TodoProof%234.png)
+
+## Screenshots of your Atlas collection showing the imported documents
+
+![Atlas Collection 1](screenshots/Collection.png)
+![Atlas Collection 2](screenshots/Collection%232.png)

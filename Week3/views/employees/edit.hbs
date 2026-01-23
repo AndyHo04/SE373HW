@@ -1,0 +1,44 @@
+<h1>Edit Employee Details</h1>
+
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}
+
+<section class="card">
+    <form action="/employees/{{employee._id}}?_method=PUT" method="POST">
+        <label>
+            First Name:
+            <input type="text" name="firstName" value="{{employee.firstName}}" required>
+        </label>
+        <label>
+            Last Name:
+            <input type="text" name="lastName" value="{{employee.lastName}}" required>
+        </label>
+        <label>
+            Department:
+            <select name="department" required>
+                <option value="">Select Department</option>
+                <option value="Engineering" {{#if (eq employee.department 'Engineering')}}selected{{/if}}>Engineering</option>
+                <option value="Human Resources" {{#if (eq employee.department 'Human Resources')}}selected{{/if}}>Human Resources</option>
+                <option value="Sales" {{#if (eq employee.department 'Sales')}}selected{{/if}}>Sales</option>
+                <option value="Marketing" {{#if (eq employee.department 'Marketing')}}selected{{/if}}>Marketing</option>
+                <option value="Finance" {{#if (eq employee.department 'Finance')}}selected{{/if}}>Finance</option>
+            </select>
+        </label>
+        <label>
+            Start Date:
+            <input type="date" name="startDate" value="{{formatDate employee.startDate}}" required>
+        </label>
+        <label>
+            Job Title:
+            <input type="text" name="jobTitle" value="{{employee.jobTitle}}" required>
+        </label>
+        <label>
+            Salary:
+            <input type="number" name="salary" min="0" max="1000000" value="{{employee.salary}}" required>
+        </label>
+        <button type="submit">Update Employee</button>
+        <br>
+        <a href="/">Cancel</a>
+    </form>
+</section>

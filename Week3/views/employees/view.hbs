@@ -1,0 +1,50 @@
+<h1>Employees List</h1>
+
+<a href="/add"><button>Add Employee</button></a>
+
+{{#if successMessage}}
+    <h2 style="color: green;">{{successMessage}}</h2>
+{{/if}}
+
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}
+
+<section class="card">
+    {{#if employees.length}}
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Department</th>
+                    <th>Job Title</th>
+                    <th>Start Date</th>
+                    <th>Salary</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each employees}}
+                    <tr>
+                        <td>{{this.firstName}}</td>
+                        <td>{{this.lastName}}</td>
+                        <td>{{this.department}}</td>
+                        <td>{{this.jobTitle}}</td>
+                        <td>{{this.startDate}}</td>
+                        <td>${{this.salary}}</td>
+                        <td>
+                            <a href="/employees/{{this._id}}/edit">Edit</a>
+
+                            <form action="/employees/{{this._id}}?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>No employees yet.</p>
+    {{/if}}
+</section>

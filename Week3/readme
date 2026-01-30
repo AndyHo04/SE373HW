@@ -1,0 +1,43 @@
+# Week 3 - Authentication System
+
+## Installation
+
+1. Install Node.js dependencies:
+```
+npm install
+```
+
+## Required Packages
+
+- express - Web framework
+- mongoose - MongoDB object modeling
+- bcrypt - Password hashing
+- passport - Authentication middleware
+- passport-local - Local authentication strategy
+- express-session - Session management
+- connect-mongo - MongoDB session store
+- express-handlebars - Templating engine
+- method-override - HTTP method override
+- dotenv - Environment variable management
+
+## Setup
+
+1. Create a `.env` file with:
+```
+PORT=3000
+MONGO_URI=Your mongo url
+SESSION_SECRET=name of your key
+```
+
+2. Make sure MongoDB is running
+
+3. Run the application:
+```
+npm run dev
+```
+
+4. Create an account if you don't have an account. You can't go anywhere if you don't create an account and logging in. If you try you will be redirected to login page
+
+5. After creating an account, login to go to the dashboard which is only for login user. There you can use all the features like viewing employee list, adding employee, and resetting password.
+
+

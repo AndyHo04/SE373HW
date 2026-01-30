@@ -1,0 +1,22 @@
+<h1>Login</h1>
+
+{{#if error}}
+    <p class="error">{{error}}</p>
+{{/if}}
+
+<section class="card">
+    <form action="/login" method="POST">
+        <label>
+            Username:
+            <input name="username" required>
+        </label>
+        <label>
+            Password:
+            <input type="password" name="password" required>
+        </label>
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <p>Don't have an account? <a href="/register">Create an account</a></p>
+    <p>Forgot your password? <a href="/reset">Reset it here</a></p>
+</section>

@@ -9,6 +9,9 @@ const mongoURI = process.env.MONGO_URI;
 const methodOverride = require('method-override');
 const { engine } = require('express-handlebars');
 const employeeRouter = require('./routes/employee');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const passport = require('passport');
 
 //templating engine setup
 app.engine('hbs', engine({ 
@@ -25,6 +28,10 @@ app.engine('hbs', engine({
       const day = String(d.getDate()).padStart(2, '0');
       return `${year}-${month}-${day}`;
     }
+  },
+   runtimeOptions: {
+    allowProtoPropertiesByDefault: true,
+    allowProtoMethodsByDefault: true
   }
 }));
 app.set('view engine', 'hbs');
@@ -36,16 +43,6 @@ if (!mongoURI) {
   process.exit(1);
 }
 
-app.use(express.json());
-app.use(methodOverride('_method'));
-app.use(express.urlencoded({ extended: true }));
-
-//setup route comes before static files to handle dynamic routes first
-app.use('/', employeeRouter);
-
-app.use('/css', express.static(path.join(__dirname, 'css')));
-
-
 async function connectToMongo() {
   try {
     await mongoose.connect(mongoURI);
@@ -55,6 +52,45 @@ async function connectToMongo() {
     process.exit(1);
   }
 }
+
+
+app.use(express.json());
+app.use(methodOverride('_method'));
+app.use(express.urlencoded({ extended: true }));
+
+//setup passport authentication
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    dbName: 'Empl'
+  }),
+  cookie: { httpOnly: true }
+})
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
+require('./auth/passport');
+
+// Serve CSS files BEFORE routes 
+app.use('/css', express.static(path.join(__dirname, 'css')));
+
+const authRouter = require('./routes/auth');
+app.use('/', authRouter);
+
+//set up router - must come AFTER passport initialization
+app.use('/', employeeRouter);
+
+
 
 connectToMongo().then(() => {
   app.listen(port, () => {

@@ -1,0 +1,27 @@
+<h2>Reset Password</h2>
+    
+{{#if errorMessage}}
+    <div class="error-message">{{errorMessage}}</div>
+{{/if}}
+
+<section class="card">
+    <form action="/auth/reset" method="POST">
+        <label>
+            Username:
+            <input name="username" required>
+        </label>
+        <label>
+            Email:
+            <input type="email" name="email" required>
+        </label>
+        <label>
+            New Password:
+            <input type="password" name="password" required>
+        </label>
+        <small>Must be at least 6 characters, contain one capital letter and one number</small>
+        <button type="submit">Reset Password</button>
+    </form>
+    <br>
+    <p><a href="/login">Back to Login</a></p>
+    <p><a href="/dashboard">Back to Dashboard</a></p>
+</section>

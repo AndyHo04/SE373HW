@@ -1,0 +1,5 @@
+node_modules/
+.env
+mongosh-*/
+.DS_Store
+logs/     

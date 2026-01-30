@@ -50,6 +50,13 @@ a:hover {
     max-width: 600px;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
 .card {
     background: linear-gradient(145deg, #3d2e5c 0%, #2d1b4e 100%);
     color: #f1f5f9;
@@ -66,23 +73,28 @@ label {
     margin: 15px 0 5px;
     color: #cbd5e1;
     font-weight: 500;
+    font-size: 16px;
     text-align: left;
 }
 
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="email"],
+input[type="password"],
+input:not([type]),
 select {
     margin: 8px 0;
-    width: 100%;
-    padding: 12px;
+    width: 100% !important;
+    padding: 14px;
     border: 1px solid #6b4f9e;
     border-radius: 6px;
     background-color: #2d1b4e;
     color: #f1f5f9;
-    font-size: 14px;
+    font-size: 16px;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
+    min-width: 0;
 }
 
 input:focus,
@@ -96,10 +108,10 @@ button {
     background-color: #8b5cf6;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 14px 28px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.1s ease;
     margin: 10px 5px;

@@ -1,7 +1,11 @@
 <h1>Login</h1>
 
-{{#if error}}
-    <p class="error">{{error}}</p>
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}
+
+{{#if successMessage}}
+    <p style="color: green; text-align: center;">{{successMessage}}</p>
 {{/if}}
 
 <section class="card">
